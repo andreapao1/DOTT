@@ -1,40 +1,32 @@
 pipeline {
-    environment {
-    registry = "naistangz/docker_automation"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-    }
-
-    agent any
+    agent { label 'master'}
+    
     stages {
-            stage('Cloning our Git') {
-                steps {
-                git 'git@github.com:naistangz/Docker_Jenkins_Pipeline.git'
-                }
-            }
-
-            stage('Building Docker Image') {
-                steps {
-                    script {
-                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    }
-                }
-            }
-
-            stage('Deploying Docker Image to Dockerhub') {
-                steps {
-                    script {
-                        docker.withRegistry('', registryCredential) {
-                        dockerImage.push()
-                        }
-                    }
-                }
-            }
-
-            stage('Cleaning Up') {
-                steps{
-                  sh "docker rmi --force $registry:$BUILD_NUMBER"
+        stage ('install'){
+            steps {
+                dir("build_node"){
+                    sh "npm install"
                 }
             }
         }
+        
+        stage ('test') {
+            steps {
+                dir("node"){
+                    sh "npm test"
+                }
+            }
+        }
+        stage ('docker build'){
+            steps {
+                echo "build"
+            }
+        }
+        
+        stage ('docker push') {
+            steps {
+                echo "push"
+            }
+        }
     }
+}
