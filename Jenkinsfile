@@ -5,6 +5,7 @@ pipeline {
         stage ('install'){
             steps {
                 dir("build_node"){
+                    sh "pwd ls"
                     sh "npm install"
                 }
             }
