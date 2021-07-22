@@ -1,31 +1,40 @@
 pipeline {
-    agent any
+    environment {
+    registry = "naistangz/docker_automation"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
 
+    agent any
     stages {
-        stage('First') {
-            steps {
-                script{
-                    env.EXECUTE="True"
+            stage('Cloning our Git') {
+                steps {
+                git 'git@github.com:naistangz/Docker_Jenkins_Pipeline.git'
                 }
             }
-        }
-        stage('Second') {
-            when {
-                expression { EXECUTE=="True"}
-                }
-            steps {
-                script{
-                    echo 'Updating Second Stage'
+
+            stage('Building Docker Image') {
+                steps {
+                    script {
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    }
                 }
             }
-        }
-        stage('Third') {
-            when {
-                expression { EXECUTE=="False"}
+
+            stage('Deploying Docker Image to Dockerhub') {
+                steps {
+                    script {
+                        docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                        }
+                    }
+                }
             }
-            steps {
-                echo 'Step Three'
+
+            stage('Cleaning Up') {
+                steps{
+                  sh "docker rmi --force $registry:$BUILD_NUMBER"
+                }
             }
         }
     }
-}
