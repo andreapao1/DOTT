@@ -10,9 +10,9 @@ pipeline {
         withSonarQubeEnv ('sonar'){
             sh """${scannerhome}/bin/sonar-scanner \
             -Dsonar.projectKey=Prueba \
-            -Dsonar.sources=./cidr_convert_api \
-            -Dsonar.host.url=http://ec2-18-191-237-226.us-east-2.compute.amazonaws.com:9000 \
-            -Dsonar.login=4cb0a7188397c274fed2efeec862b0642c8cfcd1 """
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://18.191.237.226:9000 \
+            -Dsonar.login=67da9d6baa6086238ec2bea0f00035d7ed60c4f5 """
         }
     }
     stage('Quality Gate') {
