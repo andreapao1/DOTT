@@ -24,12 +24,12 @@ pipeline {
     }
     stage('Quality Gate') {
         steps {
-        sh 'echo "Step Three ddd" '
+        sh 'echo "Step Three" '
                   }
     }
     stage('Testing') {
         steps {
-        sh 'echo "Step Three ddd" '
+        sh 'echo "Step Three" '
                }
     }
     stage('Deploy') {
