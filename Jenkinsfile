@@ -34,8 +34,7 @@ pipeline {
     stage('Deploy') {
         step {
         sh 'echo "Step Three" '
-    }
   }
-}
     }
+}
 }
