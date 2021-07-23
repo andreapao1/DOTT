@@ -14,10 +14,11 @@ pipeline {
         def scannerhome = tool 'Prueba';
         withSonarQubeEnv ('Prueba'){
             sh """${scannerhome}/opt/sonarqube  \
+              sonar-scanner \
               -Dsonar.projectKey=Prueba \
               -Dsonar.sources=. \
-              -Dsonar.host.url=http://18.191.237.226:9000 \
-              -Dsonar.login=67da9d6baa6086238ec2bea0f00035d7ed60c4f5 """
+              -Dsonar.host.url=http://ec2-52-14-179-80.us-east-2.compute.amazonaws.com:9000 \
+              -Dsonar.login=a31a5c26906baa360b699f455b9877bbe9a2be4d """
         }
     }
     }
