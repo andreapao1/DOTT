@@ -7,7 +7,6 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ElvaRamos/DOTT.git']]])
                 }
             }
-        
         stage('SonarQube') {
         steps {
         sh 'echo "Step Two Sonarqube x" '
