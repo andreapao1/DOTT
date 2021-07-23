@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
           steps {
         sh 'echo "Step One build something else" '
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ElvaRamos/DOTT.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/andreapao1/DOTT.git']]])
                 }
             }
         stage('SonarQube') {
