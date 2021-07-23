@@ -10,7 +10,6 @@ pipeline {
         stage('SonarQube') {
         steps {
         sh 'echo "Step Two Sonarqube x" '
-        sh "ls -a"
         def scannerhome = tool 'SonarScanner';
         withSonarQubeEnv ('Prueba'){
             sh """${scannerhome}/opt/sonarqube  \
