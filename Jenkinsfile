@@ -13,7 +13,7 @@ pipeline {
         sh "ls -a"
         def scannerhome =tool 'Prueba';
         withSonarQubeEnv ('Prueba'){
-            sh """${scannerhome}/bin/Sonar_Scanner  \
+            sh """${scannerhome}/opt/sonarqube  \
               -Dsonar.projectKey=Prueba \
               -Dsonar.sources=. \
               -Dsonar.host.url=http://18.191.237.226:9000 \
