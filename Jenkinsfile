@@ -8,8 +8,6 @@ pipeline {
                 }
             }
         stage('SonarQube') {
-        steps {
-        sh 'echo "Step Two Sonarqube x" '
         def scannerhome = tool 'SonarScanner';
         withSonarQubeEnv ('Prueba'){
             sh """${scannerhome}/opt/sonarqube  \
@@ -19,7 +17,6 @@ pipeline {
               -Dsonar.host.url=http://ec2-52-14-179-80.us-east-2.compute.amazonaws.com:9000 \
               -Dsonar.login=a31a5c26906baa360b699f455b9877bbe9a2be4d """
         }
-    }
     }
     stage('Quality Gate') {
         steps {
