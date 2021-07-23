@@ -4,6 +4,8 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/andreapao1/DOTT.git']]])
     }
     stage('SonarQube') {
+        stage {
+            step {
         sh 'echo "Step Two Sonarqube x" '
         sh "ls -a"
         def scannerhome =tool 'sonar';
@@ -15,13 +17,22 @@ pipeline {
             -Dsonar.login=67da9d6baa6086238ec2bea0f00035d7ed60c4f5 """
         }
     }
+        }
+        
     stage('Quality Gate') {
+        step {
         sh 'echo "Step Three ddd" '
     }
+   }
     stage('Testing') {
+        step{
         sh 'echo "Step Three ddd" '
+    }
     }
     stage('Deploy') {
+        step {
         sh 'echo "Step Three" '
     }
+  }
+}
 }
