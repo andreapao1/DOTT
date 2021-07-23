@@ -11,7 +11,7 @@ pipeline {
         steps {
         sh 'echo "Step Two Sonarqube x" '
         sh "ls -a"
-        def scannerhome =tool 'Prueba';
+        def scannerhome = tool 'Prueba';
         withSonarQubeEnv ('Prueba'){
             sh """${scannerhome}/opt/sonarqube  \
               -Dsonar.projectKey=Prueba \
