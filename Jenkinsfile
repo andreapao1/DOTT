@@ -20,7 +20,6 @@ pipeline {
         }
     }
         }
-        
     stage('Quality Gate') {
         step {
         sh 'echo "Step Three ddd" '
