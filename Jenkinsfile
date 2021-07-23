@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     stage('Build') {
         sh 'echo "Step One build something else" '
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/andreapao1/DOTT.git']]])
